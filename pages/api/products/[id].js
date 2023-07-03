@@ -1,10 +1,12 @@
-import { products } from "../../../lib/products";
+import dbConnect from '../../../db/connect';
+import Product from '../../../db/models/Product';
+import Review from "../../../db/models/Review"
 
-export default function handler(request, response) {
+export default async function handler(request, response) {
   const { id } = request.query;
 
-  const product = products.find((product) => product.id === id);
-
+  const product = await Product.findById(id).populate("reviews");
+  
   if (!product) {
     return response.status(404).json({ status: "Not Found" });
   }
