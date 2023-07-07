@@ -17,7 +17,6 @@ export default function ProductList() {
   return (
     <>
       <StyledHeading>Available Fishes</StyledHeading>
-      <ProductForm></ProductForm>
       <StyledList>
         {data.map((product) => (
           <li key={product._id}>
